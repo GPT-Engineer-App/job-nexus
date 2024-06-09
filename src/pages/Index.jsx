@@ -1,4 +1,5 @@
 import { Box, Container, Flex, Heading, Input, VStack, Text, HStack, Button, Spacer } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { FaSearch, FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 
 const JobCard = ({ title, company, location }) => (
@@ -9,7 +10,7 @@ const JobCard = ({ title, company, location }) => (
   </Box>
 );
 
-const Index = () => {
+const Index = ({ jobs }) => {
   return (
     <Container maxW="container.xl" p={4}>
       <Flex as="nav" bg="blue.500" color="white" p={4} mb={8} borderRadius="md">
@@ -20,6 +21,7 @@ const Index = () => {
           <Button variant="ghost" color="white">Jobs</Button>
           <Button variant="ghost" color="white">About</Button>
           <Button variant="ghost" color="white">Contact</Button>
+          <Button as={Link} to="/post-job" variant="ghost" color="white">Post a Job</Button>
         </HStack>
       </Flex>
 
@@ -32,9 +34,9 @@ const Index = () => {
       </VStack>
 
       <VStack spacing={4} align="stretch">
-        <JobCard title="Software Engineer" company="Tech Corp" location="San Francisco, CA" />
-        <JobCard title="Product Manager" company="Business Inc." location="New York, NY" />
-        <JobCard title="UX Designer" company="Design Studio" location="Remote" />
+        {jobs.map((job, index) => (
+          <JobCard key={index} title={job.title} company={job.company} location={job.location} />
+        ))}
       </VStack>
 
       <Flex as="footer" bg="gray.700" color="white" p={4} mt={8} borderRadius="md" justifyContent="center">
