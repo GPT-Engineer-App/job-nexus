@@ -1,5 +1,4 @@
 import { Box, Container, Flex, Heading, Input, VStack, Text, HStack, Button, Spacer } from "@chakra-ui/react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -11,17 +10,7 @@ const JobCard = ({ title, company, location }) => (
   </Box>
 );
 
-const Index = () => {
-  const [jobs, setJobs] = useState([
-    { title: "Software Engineer", company: "Tech Corp", location: "San Francisco, CA" },
-    { title: "Product Manager", company: "Business Inc.", location: "New York, NY" },
-    { title: "UX Designer", company: "Design Studio", location: "Remote" },
-  ]);
-
-  const addJob = (job) => {
-    setJobs([...jobs, job]);
-  };
-
+const Index = ({ jobs }) => {
   return (
     <Container maxW="container.xl" p={4}>
       <Flex as="nav" bg="blue.500" color="white" p={4} mb={8} borderRadius="md">
